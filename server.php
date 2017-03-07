@@ -1,5 +1,4 @@
 <?php
-
 $result = "true";
 $begin = microtime();
 
@@ -7,7 +6,7 @@ $x =  isset($_POST['x_coord']) ? $_POST['x_coord'] : NULL;
 
 $y =  isset($_POST['y_coord']) ? $_POST['y_coord'] : NULL;
 
-$r=2;
+$r = isset($_POST['radius']) ? $_POST['radius'] : NULL;
 
 $ok_msg = "Попал";
 $error_msg = "Не попал";
@@ -43,20 +42,23 @@ $time = $end - $begin;
 		<td>
 		X: <?php echo $x?>
 		</td>
+	</tr>
+	</tr>
 		<td>
 		Y: <?php echo $y?>
 		</td>
+	</tr>
+	</tr>
 		<td>
 		R: <?php echo $r?>
 		</td>
 		<td>
-		Result: <?php echo $result?>
-		</td>
-	</tr>
-	<tr>
-		<td>
-		<?php echo $time ?>
 		</td>
 	</tr>
 </table>
+	Result: <?php echo $result?>
+	<br>
+	Время работы: 
+	<?php echo $time ?>
+	наносекунд
 </body>

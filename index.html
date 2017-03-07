@@ -5,7 +5,7 @@
     <script src="parser.js"></script>
 </head>
 <body>
-    <form action="server.php" method="post" onsubmit="return checkValues();">
+    <form action="server.php" id="sender" method="post" onsubmit="return checkValues();">
 	    <table>
 		    <tr>
 			    <td>
@@ -24,7 +24,13 @@
 			    </td>
 			    <td>
         Y:<input id="y_coord" type="text" name="y_coord">
-			</td>	
+			</td>
+		</tr>
+		<tr>
+			<td>
+	R:<input type="button" id="radius" value="1" onclick="changeValue()">
+	<input type="hidden" value="1" name="radius" id="r_val">
+			</td>
 		</tr>
 	    </table>
         <input type="submit" value="Отправить">

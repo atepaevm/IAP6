@@ -10,3 +10,16 @@ function checkValues(){
 	}
 	return true;
 }
+
+
+
+
+function changeValue(){
+	r = Number(document.getElementById("radius").value);
+	r = isNaN(r) ? 1 : r + 0.5;
+	if(r > 3){
+		r = 1;
+	}
+	document.getElementById("radius").value = r;
+	document.getElementById("r_val").value = r;
+}
