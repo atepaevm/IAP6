@@ -8,6 +8,10 @@ function checkValues(){
 	if(isNaN(y) || y < -5 || y > 5){
 		return false;
 	}
+	r = document.getElementById("r_val").value;
+	if(isNaN(r) || r < 1 || r > 3){
+		return false;
+	}
 	return true;
 }
 

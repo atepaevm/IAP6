@@ -60,5 +60,5 @@ $time = $end - $begin;
 	<br>
 	Время работы: 
 	<?php echo $time ?>
-	наносекунд
+	микросекунд
 </body>
