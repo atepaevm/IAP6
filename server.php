@@ -1,25 +1,29 @@
 <?php
 
+$result = "true";
 $begin = microtime();
 
 $x =  isset($_POST['x_coord']) ? $_POST['x_coord'] : NULL;
 
 $y =  isset($_POST['y_coord']) ? $_POST['y_coord'] : NULL;
 
-$r=1;
+$r=2;
 
-if($x > 0 && $y > 0){
+$ok_msg = "Попал";
+$error_msg = "Не попал";
 
 
-} else if($x < 0 && $y > 0){
+if($x >= 0 && $y >= 0){
+	$result = (x*x + y*y <= r*r) ? $ok_msg : $error_msg;
 
+} else if($x < 0 && $y >= 0){
+	$result = (abs(x) <= r && y <= r - abs(x)) ? $ok_msg : $error_msg;
 
 } else if($x > 0 && $y < 0){
-	$result = ((y <= R/2 && ))
+	$result = (r >= abs(x) && r/2 >= abs(y)) ? $ok_msg : $error_msg;
 } else {
-	$result = "Не попал";
+	$result = $error_msg;
 }
-
 
 
 
@@ -51,7 +55,7 @@ $time = $end - $begin;
 	</tr>
 	<tr>
 		<td>
-		<? echo $time ?>
+		<?php echo $time ?>
 		</td>
 	</tr>
 </table>
