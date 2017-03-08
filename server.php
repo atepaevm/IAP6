@@ -1,33 +1,36 @@
 <?php
 $result = "true";
-$begin = microtime();
+$begin = explode(' ',microtime());
+$x =  isset($_POST['x_coord']) ? (is_numeric($_POST['x_coord'])? intval($_POST['x_coord']) : NULL) : NULL;
+$x_values = array(-3, -2, -1, 0, 1, 2, 3, 4, 5);
+$y =  isset($_POST['y_coord']) ? (is_numeric($_POST['y_coord'])? floatval($_POST['y_coord']) : NULL) : NULL;
 
-$x =  isset($_POST['x_coord']) ? $_POST['x_coord'] : NULL;
+$r = isset($_POST['radius']) ? (is_numeric($_POST['radius'])? floatval($_POST['radius']) : NULL) : NULL;
+$r_values = array(1, 1.5, 2, 2.5, 3);
 
-$y =  isset($_POST['y_coord']) ? $_POST['y_coord'] : NULL;
+$ok_msg = "Попалa";
+$error_msg = "Не попалa";
 
-$r = isset($_POST['radius']) ? $_POST['radius'] : NULL;
-
-$ok_msg = "Попал";
-$error_msg = "Не попал";
-
-
-if($x >= 0 && $y >= 0){
-	$result = (x*x + y*y <= r*r) ? $ok_msg : $error_msg;
-
-} else if($x < 0 && $y >= 0){
-	$result = (abs(x) <= r && y <= r - abs(x)) ? $ok_msg : $error_msg;
-
-} else if($x > 0 && $y < 0){
-	$result = (r >= abs(x) && r/2 >= abs(y)) ? $ok_msg : $error_msg;
+if(in_array($x, $x_values, TRUE) && in_array($r, $r_values) && $y <= 5 && $y >= -5 ){
+	if($x >= 0 && $y >= 0){
+		$result = ($x*$x + $y*$y <= $r*$r) ? $ok_msg : $error_msg;
+	} else if($x < 0 && $y >= 0){
+		$result = (abs($x) <= $r && $y <= $r - abs($x)) ? $ok_msg : $error_msg;
+	} else if($x > 0 && $y < 0){
+		$result = ($r >= abs($x) && $r/2 >= abs($y)) ? $ok_msg : $error_msg;
+	} else {
+		$result = $error_msg;
+	}
 } else {
-	$result = $error_msg;
+	$result = "Параметры установлены неверно";
 }
 
 
-
-$end = microtime();
-$time = $end - $begin;
+$end = explode(' ', microtime());
+$time = number_format(($end[0] - $begin[0]) * 1000, 6, '.', '');
+if($begin[1] !== $end[1]){
+	$time += ($end[1] - $begin[1]) * 1000000;
+}
 ?>
 
 
@@ -60,5 +63,5 @@ $time = $end - $begin;
 	<br>
 	Время работы: 
 	<?php echo $time ?>
-	микросекунд
+	наносекунд
 </body>
