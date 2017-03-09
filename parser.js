@@ -20,7 +20,7 @@ function checkValues(){
 
 function changeValue(){
 	r = Number(document.getElementById("radius").value);
-	r = isNaN(r) ? 1 : r + 0.5;
+	r = (isNaN(r) ||  r < 1 || r > 3) ? 1 : r + 0.5;
 	if(r > 3){
 		r = 1;
 	}
