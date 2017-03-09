@@ -38,7 +38,23 @@ if($begin[1] !== $end[1]){
 <head>
 	<title>Answer</title>
 	<meta charset="UTF-8">
+	<style>
+	tr > td{
+	color: blue;
+	}
+	table {
+	background: #F9F9F9;
+	border: 2px solid red;
+	}
+	tr:hover{
+	background: #000000;
+	}
+	td:hover ul li {
+	background: #FFFFFF;	
+	}
+	</style>
 </head>
+<link rel="stylesheet" type="text/css" href="./style.css" />
 <body>
 <table>
 	<tr>
@@ -54,8 +70,6 @@ if($begin[1] !== $end[1]){
 	</tr>
 		<td>
 		R: <?php echo $r?>
-		</td>
-		<td>
 		</td>
 	</tr>
 </table>
