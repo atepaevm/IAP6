@@ -1,8 +1,8 @@
 <?php
 
-class Point{
-	$x;
-	$y;
+class Point {
+	public $x;
+	public $y;
 	static $x_values = array(-3, -2, -1, 0, 1, 2, 3, 4, 5);
 	static $r_values = array(1, 1.5, 2, 2.5, 3);
 	static $ok_msg = "Попалa";
@@ -15,13 +15,13 @@ class Point{
 	}
 
 	function check($r = 1){
-		if(in_array($x, Point::$x_values, TRUE) && in_array($r, Point::$r_values, TRUE) && $y <= 5 && $y >= -5 ){
-			if($x >= 0 && $y >= 0){
-				$result = ($x*$x + $y*$y <= $r*$r) ? Point::$ok_msg : Point::$error_msg;
-			} else if($x < 0 && $y >= 0){
-				$result = (abs($x) <= $r && $y <= $r - abs($x)) ? Point::$ok_msg : Point::$error_msg;
-			} else if($x > 0 && $y < 0){
-				$result = ($r >= abs($x) && $r/2 >= abs($y)) ? Point::$ok_msg : Point::$error_msg;
+		if(in_array($this->x, Point::$x_values, TRUE) && in_array($r, Point::$r_values, TRUE) && $this->y <= 5 && $this->y >= -5 ){
+			if($this->x >= 0 && $this->y >= 0){
+				$result = ($this->x*$this->x + $this->y*$this->y <= $r*$r) ? Point::$ok_msg : Point::$error_msg;
+			} else if($this->x < 0 && $this->y >= 0){
+				$result = (abs($this->x) <= $r && $this->y <= $r - abs($this->x)) ? Point::$ok_msg : Point::$error_msg;
+			} else if($this->x > 0 && $this->y < 0){
+				$result = ($r >= abs($this->x) && $r/2 >= abs($this->y)) ? Point::$ok_msg : Point::$error_msg;
 			} else {
 				$result = Point::$error_msg;
 			}
