@@ -1,5 +1,4 @@
 <?php
-
 class Point {
 	public $x;
 	public $y;
@@ -31,6 +30,20 @@ class Point {
 		return $result;	
 	}
 }
+
+session_start();
+if(!isset($_SESSION['x_vals'])){
+$_SESSION['x_vals'] = array();
+}
+if(!isset($_SESSION['y_vals'])){
+$_SESSION['y_vals'] = array();
+}
+if(!isset($_SESSION['r_vals'])){
+$_SESSION['r_vals'] = array();
+}
+if(!isset($_SESSION['results'])){
+$_SESSION['results'] = array();
+}
 $begin = explode(' ',microtime());
 $x =  isset($_POST['x_coord']) ? (is_numeric($_POST['x_coord'])? intval($_POST['x_coord']) : NULL) : NULL;
 
@@ -46,6 +59,10 @@ $time = number_format(($end[0] - $begin[0]) * 1000, 6, '.', '');
 if($begin[1] !== $end[1]){
 	$time += ($end[1] - $begin[1]) * 1000000;
 }
+array_push($_SESSION['x_vals'], $x);
+array_push($_SESSION['y_vals'], $y);
+array_push($_SESSION['r_vals'], $r);
+array_push($_SESSION['results'], $result);
 ?>
 
 
@@ -73,22 +90,45 @@ if($begin[1] !== $end[1]){
 <table>
 	<tr>
 		<td>
-		X: <?php echo $x?>
+		X:
 		</td>
-	</tr>
-	</tr>
+		<?php foreach($_SESSION['x_vals'] as $x_val){?>
 		<td>
-		Y: <?php echo $y?>
+		<?php echo $x_val?>
 		</td>
+		<?php } ?>
 	</tr>
-	</tr>
+	<tr>
 		<td>
-		R: <?php echo $r?>
+		Y:
 		</td>
+		<?php foreach($_SESSION['y_vals'] as $y_val){?>
+		<td>
+		<?php echo $y_val?>
+		</td>
+		<?php } ?>
+	</tr>
+	<tr>
+		<td>
+		R:
+		</td>
+		<?php foreach($_SESSION['r_vals'] as $r_val){?>
+		<td>
+		<?php echo $r_val?>
+		</td>
+		<?php } ?>
+	</tr>
+	<tr>
+		<td>
+			Result:
+		</td>
+		<?php foreach($_SESSION['results'] as $result_val){?>
+		<td>
+		<?php echo $result_val?>
+		</td>
+		<?php } ?>
 	</tr>
 </table>
-	Result: <?php echo $result?>
-	<br>
 	Время работы: 
 	<?php echo $time?>
 	микросекунд
